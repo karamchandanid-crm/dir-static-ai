@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Leaders - Trailhead Style</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header__title">Meet Our Community Leaders</h1>
+            <p class="header__description">Discover exceptional professionals who are making a difference in their communities</p>
+        </header>
+
+        <div class="filters">
+            <div class="filters__search">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search Community Leaders...">
+            </div>
+            <div class="filters__options">
+                <select id="regionFilter" class="filter-select">
+                    <option value="">All Regions</option>
+                    <option value="north-america">North America</option>
+                    <option value="europe">Europe</option>
+                    <option value="asia-pacific">Asia Pacific</option>
+                    <option value="latin-america">Latin America</option>
+                </select>
+                <select id="expertiseFilter" class="filter-select">
+                    <option value="">All Expertise</option>
+                    <option value="development">Development</option>
+                    <option value="administration">Administration</option>
+                    <option value="architecture">Architecture</option>
+                    <option value="consulting">Consulting</option>
+                </select>
+                <select id="yearFilter" class="filter-select">
+                    <option value="">All Years</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+                <select id="alignmentToggle" class="filter-select">
+                    <option value="alignment-2">Alignment 2 (Side-by-side)</option>
+                    <option value="alignment-1">Alignment 1 (Centered)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layout-controls">
+            <div class="layout-controls__header">
+                <h3 class="layout-controls__title">Layout View Options</h3>
+            </div>
+            <div class="layout-controls__options">
+                <div class="layout-option">
+                    <label class="layout-option__label">
+                        <input type="radio" name="stateArrangement" value="side-by-side" class="layout-option__input">
+                        <span class="layout-option__text">Option 1: Side-by-side State Arrangement</span>
+                        <span class="layout-option__description">Display profile states in two columns</span>
+                    </label>
+                </div>
+                <div class="layout-option">
+                    <label class="layout-option__label">
+                        <input type="radio" name="stateArrangement" value="by-line" class="layout-option__input" checked>
+                        <span class="layout-option__text">Option 2: By-line State Arrangement</span>
+                        <span class="layout-option__description">Display profile states in single column rows</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-info">
+            <span id="resultsCount" class="results-count">Loading profiles...</span>
+        </div>
+
+        <div id="profileGrid" class="profile-grid">
+            <div class="loading">
+                <div class="loading__spinner"></div>
+                <p>Loading Community Leader profiles...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
