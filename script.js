@@ -37,6 +37,8 @@ class CommunityLeaders {
                 signins: 2341,
                 pageViews: 5892,
                 subscriptions: ["SYS-ADSK-Gold Subscription", "Expert Elite", "Lightning Champions"],
+                primaryProduct: "Revit",
+                industry: "BIM Manager",
                 ipAddress: "192.168.1.45",
                 lastActive: "12-20-2024"
             },
@@ -59,6 +61,8 @@ class CommunityLeaders {
                 signins: 1567,
                 pageViews: 3421,
                 subscriptions: ["SYS-ADSK-Silver Subscription", "Architecture Forum"],
+                primaryProduct: "AutoCAD Civil 3D",
+                industry: "Architect",
                 ipAddress: "201.142.89.33",
                 lastActive: "01-02-2025"
             },
@@ -81,6 +85,8 @@ class CommunityLeaders {
                 signins: 3892,
                 pageViews: 7234,
                 subscriptions: ["SYS-ADSK-Platinum Subscription", "Admin Support", "Allow Simple HTML"],
+                primaryProduct: "BIM 360 Design",
+                industry: "CAD Administrator",
                 ipAddress: "103.21.45.178",
                 lastActive: "01-05-2025"
             },
@@ -103,6 +109,8 @@ class CommunityLeaders {
                 signins: 5123,
                 pageViews: 9876,
                 subscriptions: ["Expert Elite", "SYS-ADSK-Premium Non Admin Support"],
+                primaryProduct: "Fusion 360",
+                industry: "Consultant",
                 ipAddress: "82.163.45.129",
                 lastActive: "01-04-2025"
             },
@@ -125,6 +133,8 @@ class CommunityLeaders {
                 signins: 2678,
                 pageViews: 4532,
                 subscriptions: ["SYS-ADSK-Gold Subscription", "Developer Network"],
+                primaryProduct: "Inventor",
+                industry: "Software Engineer",
                 ipAddress: "203.127.89.45",
                 lastActive: "01-03-2025"
             },
@@ -147,6 +157,8 @@ class CommunityLeaders {
                 signins: 4321,
                 pageViews: 8765,
                 subscriptions: ["SYS-ADSK-Premium Admin Support", "Autodesk Group Network Group Leaders"],
+                primaryProduct: "Vault",
+                industry: "Technical Specialist",
                 ipAddress: "67.163.206.129",
                 lastActive: "06-21-2025"
             },
@@ -169,6 +181,8 @@ class CommunityLeaders {
                 signins: 1890,
                 pageViews: 3567,
                 subscriptions: ["SYS-ADSK-Silver Subscription", "Business Analysis Forum"],
+                primaryProduct: "3ds Max",
+                industry: "BIM Consultant",
                 ipAddress: "177.45.89.234",
                 lastActive: "01-05-2025"
             },
@@ -191,6 +205,8 @@ class CommunityLeaders {
                 signins: 1022,
                 pageViews: 2793,
                 subscriptions: ["SYS-ADSK-Gold Subscription", "SYS-ADSK-Silver Subscription", "Allow Simple HTML"],
+                primaryProduct: "NavisWorks",
+                industry: "BIM Coordinator",
                 ipAddress: "86.42.178.95",
                 lastActive: "01-02-2025"
             }
@@ -291,6 +307,18 @@ class CommunityLeaders {
                         <p class="profile-card__description">${profile.bio}</p>
                         
                         <div class="profile-card__stats">
+                            <div class="stat-item">
+                                <span class="stat-icon">🏢</span>
+                                <span class="stat-value">${profile.industry}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">🛠️</span>
+                                <span class="stat-value">${profile.primaryProduct}</span>
+                            </div>
+                            <div class="stat-item add-on-hides">
+                                <span class="stat-icon">✉️</span>
+                                <span class="stat-value">${profile.email}</span>
+                            </div>
                             <div class="stat-item add-on-hides">
                                 <span class="stat-icon">📝</span>
                                 <span class="stat-value">${profile.posts} Posts</span>
@@ -298,10 +326,6 @@ class CommunityLeaders {
                             <div class="stat-item add-on-hides">
                                 <span class="stat-icon">📅</span>
                                 <span class="stat-value">${profile.joinDate}</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-icon">✉️</span>
-                                <span class="stat-value">${profile.email}</span>
                             </div>
                             <div class="stat-item add-on-hides">
                                 <span class="stat-icon">🔑</span>
@@ -311,7 +335,7 @@ class CommunityLeaders {
                                 <span class="stat-icon">👁️</span>
                                 <span class="stat-value">${profile.pageViews.toLocaleString()} Page Views</span>
                             </div>
-                            <div class="stat-item stat-item--full">
+                            <div class="stat-item stat-item--full add-on-hides">
                                 <span class="stat-icon">👥</span>
                                 <span class="stat-value">${profile.subscriptions.join(', ')}</span>
                             </div>
@@ -349,8 +373,8 @@ class CommunityLeaders {
                         
                         <div class="profile-card__badges">
                             <span class="badge badge--mvp add-on-hides">📝 ${profile.posts} Posts</span>
-                            <span class="badge badge--location add-on-hides">📅 Joined ${profile.joinDate}</span>
-                            <span class="badge badge--link">✉️ ${profile.email}</span>
+                            <span class="badge badge--location">🏢 ${profile.industry}</span>
+                            <span class="badge badge--link">🛠️ ${profile.primaryProduct}</span>
                         </div>
                         
                         <div class="profile-card__footer">
