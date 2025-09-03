@@ -221,6 +221,8 @@ class CommunityLeaders {
         const searchInput = document.getElementById('searchInput');
         const regionFilter = document.getElementById('regionFilter');
         const expertiseFilter = document.getElementById('expertiseFilter');
+        const industryFilter = document.getElementById('industryFilter');
+        const productFilter = document.getElementById('productFilter');
         const yearFilter = document.getElementById('yearFilter');
         const alignmentToggle = document.getElementById('alignmentToggle');
         const stateArrangementInputs = document.querySelectorAll('input[name="stateArrangement"]');
@@ -228,6 +230,8 @@ class CommunityLeaders {
         searchInput.addEventListener('input', () => this.applyFilters());
         regionFilter.addEventListener('change', () => this.applyFilters());
         expertiseFilter.addEventListener('change', () => this.applyFilters());
+        industryFilter.addEventListener('change', () => this.applyFilters());
+        productFilter.addEventListener('change', () => this.applyFilters());
         yearFilter.addEventListener('change', () => this.applyFilters());
         
         // Handle alignment toggle
@@ -252,6 +256,8 @@ class CommunityLeaders {
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         const regionFilter = document.getElementById('regionFilter').value;
         const expertiseFilter = document.getElementById('expertiseFilter').value;
+        const industryFilter = document.getElementById('industryFilter').value;
+        const productFilter = document.getElementById('productFilter').value;
         const yearFilter = document.getElementById('yearFilter').value;
 
         this.filteredProfiles = this.profiles.filter(profile => {
@@ -263,9 +269,11 @@ class CommunityLeaders {
 
             const matchesRegion = !regionFilter || profile.region === regionFilter;
             const matchesExpertise = !expertiseFilter || profile.expertise === expertiseFilter;
+            const matchesIndustry = !industryFilter || profile.industry === industryFilter;
+            const matchesProduct = !productFilter || profile.primaryProduct === productFilter;
             const matchesYear = !yearFilter || profile.year === yearFilter;
 
-            return matchesSearch && matchesRegion && matchesExpertise && matchesYear;
+            return matchesSearch && matchesRegion && matchesExpertise && matchesIndustry && matchesProduct && matchesYear;
         });
 
         this.renderProfiles();
