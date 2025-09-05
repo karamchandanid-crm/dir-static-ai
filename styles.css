@@ -775,9 +775,6 @@ body.alignment-2 .stat-item {
   justify-content: flex-start;
 }
 
-body.alignment-2 .stat-item--full {
-  grid-column: 1;
-}
 
 .profile-card__action:hover {
   background: var(--slds-c-brand);
@@ -861,9 +858,6 @@ body.alignment-1 .profile-card__stats {
 }
 
 /* Ensure stats are visible in alignment-2 (Default) */
-body.alignment-2 .profile-card__stats {
-  display: grid;
-}
 
 /* Alignment 3 - List View */
 body.alignment-3 .profile-grid {
