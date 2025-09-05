@@ -7,8 +7,8 @@ class CommunityLeaders {
     }
 
     init() {
-        // Set default alignment to alignment-2 (Detailed Card) before loading profiles
-        this.switchAlignment('alignment-2');
+        // Set default alignment to alignment-8 (X/Twitter Minimal) before loading profiles
+        this.switchAlignment('alignment-8');
         // Set default state arrangement to side-by-side
         this.switchStateArrangement('side-by-side');
         this.loadProfiles();
@@ -26,7 +26,7 @@ class CommunityLeaders {
                 job_title: "Expert Elite Member",
                 company: "TechCorp Solutions",
                 region: "north-america",
-                expertise: "development",
+                expertise: "Development",
                 year: "2024",
                 location: "San Francisco, CA",
                 bio: "Passionate about creating innovative solutions that drive business transformation. Specializes in Lightning Web Components and integration patterns.",
@@ -50,7 +50,7 @@ class CommunityLeaders {
                 job_title: "Solution Architect",
                 company: "Global Enterprises",
                 region: "latin-america",
-                expertise: "architecture",
+                expertise: "Architecture",
                 year: "2023",
                 location: "Mexico City, Mexico",
                 bio: "Expert in designing scalable Autodesk platform solutions for enterprise clients. Focus on data architecture and system integration.",
@@ -74,7 +74,7 @@ class CommunityLeaders {
                 job_title: "Forum Moderator",
                 company: "InnovateTech",
                 region: "asia-pacific",
-                expertise: "administration",
+                expertise: "Administration",
                 year: "2024",
                 location: "Mumbai, India",
                 bio: "Dedicated to optimizing business processes through intelligent automation and user experience design.",
@@ -98,7 +98,7 @@ class CommunityLeaders {
                 job_title: "Expert Elite Member",
                 company: "CloudForward",
                 region: "europe",
-                expertise: "consulting",
+                expertise: "Consulting",
                 year: "2023",
                 location: "London, UK",
                 bio: "Helping organizations maximize their Autodesk platform investment through strategic implementations and change management.",
@@ -122,7 +122,7 @@ class CommunityLeaders {
                 job_title: "Developer Expert",
                 company: "NextGen Solutions",
                 region: "asia-pacific",
-                expertise: "development",
+                expertise: "Development",
                 year: "2024",
                 location: "Singapore",
                 bio: "Specializes in custom Autodesk applications and advanced platform development for complex business requirements.",
@@ -146,7 +146,7 @@ class CommunityLeaders {
                 job_title: "Technical Expert",
                 company: "Enterprise Systems",
                 region: "north-america",
-                expertise: "architecture",
+                expertise: "Architecture",
                 year: "2022",
                 location: "Toronto, Canada",
                 bio: "Leading digital transformation initiatives with focus on API integrations and data migration strategies.",
@@ -170,7 +170,7 @@ class CommunityLeaders {
                 job_title: "Solutions Consultant",
                 company: "Digital Transformation Co",
                 region: "latin-america",
-                expertise: "consulting",
+                expertise: "Consulting",
                 year: "2024",
                 location: "São Paulo, Brazil",
                 bio: "Bridging the gap between business requirements and technical solutions with expertise in process optimization.",
@@ -194,7 +194,7 @@ class CommunityLeaders {
                 job_title: "Support Specialist",
                 company: "TechAdvantage",
                 region: "europe",
-                expertise: "administration",
+                expertise: "Administration",
                 year: "2023",
                 location: "Dublin, Ireland",
                 bio: "Expert in user management, security configurations, and workflow automation to enhance organizational efficiency.",
@@ -307,7 +307,7 @@ class CommunityLeaders {
         }
 
         // Get current alignment
-        let currentAlignment = 'alignment-1';
+        let currentAlignment = 'alignment-8';
         for (let i = 1; i <= 12; i++) {
             if (document.body.classList.contains(`alignment-${i}`)) {
                 currentAlignment = `alignment-${i}`;
@@ -593,9 +593,12 @@ class CommunityLeaders {
                                 <div class="profile-card__tw-header">
                                     <div class="profile-card__tw-name-section">
                                         <h3 class="profile-card__tw-name">${profile.name}</h3>
-                                        <p class="profile-card__tw-handle">@${profile.handle}</p>
+                                        <p class="profile-card__tw-handle">${profile.job_title}</p>
+                                        <span class="profile-card__tw-role-badge">${profile.badge}</span>
                                     </div>
-                                    <button class="btn btn--follow add-on-hides">Follow</button>
+                                    <div class="profile-card__tw-right">
+                                        <button class="btn btn--follow add-on-hides">Follow</button>
+                                    </div>
                                 </div>
                                 <div class="profile-card__tw-stats add-on-hides">
                                     <span><strong>${profile.signins.toLocaleString()}</strong> Following</span>
@@ -604,7 +607,24 @@ class CommunityLeaders {
                             </div>
                         </div>
                         <p class="profile-card__tw-bio">${profile.bio}</p>
-                        <div class="profile-card__tw-separator"></div>
+                        <div class="profile-card__stats">
+                            <div class="stat-item">
+                                <span class="stat-icon">🏢</span>
+                                <span class="stat-value">${profile.industry}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">🌟</span>
+                                <span class="stat-value">${profile.expertise}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">📅</span>
+                                <span class="stat-value">${profile.year} </span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-icon">📍</span>
+                                <span class="stat-value">${profile.location}</span>
+                            </div>
+                        </div>
                         <div class="profile-card__tw-footer">
                             <div class="social-links social-links--compact">
                                 <a href="#" class="social-link social-link--linkedin" title="LinkedIn Profile">
