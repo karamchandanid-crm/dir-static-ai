@@ -7,10 +7,10 @@ class CommunityLeaders {
     }
 
     init() {
-        // Set default alignment to alignment-2 before loading profiles
+        // Set default alignment to alignment-2 (Detailed Card) before loading profiles
         this.switchAlignment('alignment-2');
-        // Set default state arrangement to by-line
-        this.switchStateArrangement('by-line');
+        // Set default state arrangement to side-by-side
+        this.switchStateArrangement('side-by-side');
         this.loadProfiles();
         this.setupEventListeners();
     }
@@ -225,6 +225,7 @@ class CommunityLeaders {
         const productFilter = document.getElementById('productFilter');
         const yearFilter = document.getElementById('yearFilter');
         const alignmentToggle = document.getElementById('alignmentToggle');
+        const layoutStyleInputs = document.querySelectorAll('input[name="layoutStyle"]');
         const stateArrangementInputs = document.querySelectorAll('input[name="stateArrangement"]');
 
         searchInput.addEventListener('input', () => this.applyFilters());
@@ -234,9 +235,21 @@ class CommunityLeaders {
         productFilter.addEventListener('change', () => this.applyFilters());
         yearFilter.addEventListener('change', () => this.applyFilters());
         
-        // Handle alignment toggle
+        // Handle alignment toggle dropdown (keep for backward compatibility)
         alignmentToggle.addEventListener('change', (e) => {
             this.switchAlignment(e.target.value);
+            // Update radio buttons to match
+            const matchingRadio = document.querySelector(`input[name="layoutStyle"][value="${e.target.value}"]`);
+            if (matchingRadio) matchingRadio.checked = true;
+        });
+
+        // Handle layout style radio buttons
+        layoutStyleInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                this.switchAlignment(e.target.value);
+                // Update dropdown to match
+                alignmentToggle.value = e.target.value;
+            });
         });
 
         // Handle state arrangement toggle
@@ -293,11 +306,18 @@ class CommunityLeaders {
             return;
         }
 
-        const currentAlignment = document.body.classList.contains('alignment-2') ? 'alignment-2' : 'alignment-1';
+        // Get current alignment
+        let currentAlignment = 'alignment-1';
+        for (let i = 1; i <= 12; i++) {
+            if (document.body.classList.contains(`alignment-${i}`)) {
+                currentAlignment = `alignment-${i}`;
+                break;
+            }
+        }
         
         grid.innerHTML = this.filteredProfiles.map(profile => {
             if (currentAlignment === 'alignment-2') {
-                // Alignment 2 - Side-by-side layout with all details
+                // Alignment 2 - Detailed Card with all information
                 return `
                     <div class="profile-card" data-id="${profile.id}">
                         <div class="profile-card__header">
@@ -363,8 +383,8 @@ class CommunityLeaders {
                         </div>
                     </div>
                 `;
-            } else {
-                // Alignment 1 - Centered layout with essential details
+            } else if (currentAlignment === 'alignment-1') {
+                // Alignment 1 - Compact Card
                 return `
                     <div class="profile-card" data-id="${profile.id}">
                         <div class="profile-card__header">
@@ -388,6 +408,244 @@ class CommunityLeaders {
                         <div class="profile-card__footer">
                             <a href="#" class="profile-card__action">View Profile</a>
                         </div>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-3') {
+                // Alignment 3 - List View
+                return `
+                    <div class="profile-card profile-card--list" data-id="${profile.id}">
+                        <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__avatar">
+                        <div class="profile-card__content">
+                            <div class="profile-card__main">
+                                <h3>${profile.name} <span class="badge badge--role">${profile.badge}</span></h3>
+                                <p class="profile-card__subtitle">${profile.job_title} at ${profile.company} • ${profile.location}</p>
+                            </div>
+                            <div class="profile-card__meta">
+                                <span class="meta-item">🏢 ${profile.industry}</span>
+                                <span class="meta-item">🛠️ ${profile.primaryProduct}</span>
+                                <span class="meta-item add-on-hides">📝 ${profile.posts} Posts</span>
+                            </div>
+                        </div>
+                        <a href="#" class="profile-card__action">View Profile</a>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-4') {
+                // Alignment 4 - Grid Minimal
+                return `
+                    <div class="profile-card profile-card--minimal" data-id="${profile.id}">
+                        <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__avatar profile-card__avatar--large">
+                        <h3 class="profile-card__name">${profile.name}</h3>
+                        <p class="profile-card__role">${profile.job_title}</p>
+                        <div class="profile-card__tags">
+                            <span class="tag">${profile.industry}</span>
+                            <span class="tag">${profile.primaryProduct}</span>
+                        </div>
+                        <a href="#" class="profile-card__action profile-card__action--minimal">View</a>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-5') {
+                // Alignment 5 - Profile Focus
+                return `
+                    <div class="profile-card profile-card--focus" data-id="${profile.id}">
+                        <div class="profile-card__cover">
+                            <span class="badge badge--floating">${profile.badge}</span>
+                        </div>
+                        <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__avatar profile-card__avatar--bordered">
+                        <div class="profile-card__details">
+                            <h3>${profile.name}</h3>
+                            <p class="profile-card__handle">@${profile.handle}</p>
+                            <p class="profile-card__position">${profile.job_title}</p>
+                            <p class="profile-card__company">${profile.company}</p>
+                            <div class="profile-card__divider"></div>
+                            <div class="profile-card__info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Industry</span>
+                                    <span class="info-value">${profile.industry}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Product</span>
+                                    <span class="info-value">${profile.primaryProduct}</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">${profile.location}</span>
+                                </div>
+                                <div class="info-item add-on-hides">
+                                    <span class="info-label">Posts</span>
+                                    <span class="info-value">${profile.posts}</span>
+                                </div>
+                            </div>
+                            <a href="#" class="profile-card__action profile-card__action--full">View Full Profile</a>
+                        </div>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-6') {
+                // LinkedIn Professional Style
+                return `
+                    <div class="profile-card profile-card--linkedin" data-id="${profile.id}">
+                        <div class="profile-card__linkedin-header">
+                            <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__linkedin-avatar">
+                            <div class="profile-card__linkedin-info">
+                                <h3 class="profile-card__linkedin-name">${profile.name}</h3>
+                                <p class="profile-card__linkedin-headline">${profile.job_title} at ${profile.company}</p>
+                                <p class="profile-card__linkedin-location">${profile.location} • ${profile.posts} posts</p>
+                                <div class="profile-card__linkedin-badges">
+                                    <span class="badge badge--linkedin">${profile.badge}</span>
+                                    <span class="badge badge--industry">${profile.industry}</span>
+                                </div>
+                            </div>
+                            <div class="profile-card__linkedin-actions">
+                                <button class="btn btn--connect">Connect</button>
+                                <button class="btn btn--message">Message</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-7') {
+                // Facebook Social Style
+                return `
+                    <div class="profile-card profile-card--facebook" data-id="${profile.id}">
+                        <div class="profile-card__fb-cover"></div>
+                        <div class="profile-card__fb-content">
+                            <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__fb-avatar">
+                            <div class="profile-card__fb-info">
+                                <h3>${profile.name}</h3>
+                                <p class="profile-card__fb-subtitle">${profile.signins.toLocaleString()} followers</p>
+                                <div class="profile-card__fb-stats">
+                                    <span>📝 ${profile.posts} Posts</span>
+                                    <span>👁️ ${profile.pageViews.toLocaleString()} Views</span>
+                                    <span>🏢 ${profile.industry}</span>
+                                </div>
+                                <div class="profile-card__fb-actions">
+                                    <button class="btn btn--fb-primary">Follow</button>
+                                    <button class="btn btn--fb-secondary">Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-8') {
+                // X (Twitter) Minimal Style
+                return `
+                    <div class="profile-card profile-card--twitter" data-id="${profile.id}">
+                        <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__tw-avatar">
+                        <div class="profile-card__tw-content">
+                            <div class="profile-card__tw-header">
+                                <div>
+                                    <h3 class="profile-card__tw-name">${profile.name}</h3>
+                                    <p class="profile-card__tw-handle">@${profile.handle}</p>
+                                </div>
+                                <button class="btn btn--follow">Follow</button>
+                            </div>
+                            <p class="profile-card__tw-bio">${profile.bio}</p>
+                            <div class="profile-card__tw-stats">
+                                <span><strong>${profile.signins.toLocaleString()}</strong> Following</span>
+                                <span><strong>${profile.pageViews.toLocaleString()}</strong> Followers</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-9') {
+                // YouTube Creator Style
+                return `
+                    <div class="profile-card profile-card--youtube" data-id="${profile.id}">
+                        <div class="profile-card__yt-banner">
+                            <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__yt-avatar">
+                        </div>
+                        <div class="profile-card__yt-content">
+                            <h3 class="profile-card__yt-channel">${profile.name}</h3>
+                            <p class="profile-card__yt-handle">@${profile.handle}</p>
+                            <div class="profile-card__yt-stats">
+                                <span class="stat">${profile.signins.toLocaleString()} subscribers</span>
+                                <span class="stat">${profile.posts} videos</span>
+                                <span class="stat">${profile.pageViews.toLocaleString()} views</span>
+                            </div>
+                            <button class="btn btn--subscribe">Subscribe</button>
+                        </div>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-10') {
+                // Salesforce Data Style
+                return `
+                    <div class="profile-card profile-card--salesforce" data-id="${profile.id}">
+                        <div class="profile-card__sf-header">
+                            <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__sf-avatar">
+                            <div class="profile-card__sf-title">
+                                <h3>${profile.name}</h3>
+                                <span class="badge badge--sf-status">${profile.badge}</span>
+                            </div>
+                        </div>
+                        <div class="profile-card__sf-fields">
+                            <div class="field-row">
+                                <span class="field-label">Title</span>
+                                <span class="field-value">${profile.job_title}</span>
+                            </div>
+                            <div class="field-row">
+                                <span class="field-label">Company</span>
+                                <span class="field-value">${profile.company}</span>
+                            </div>
+                            <div class="field-row">
+                                <span class="field-label">Industry</span>
+                                <span class="field-value">${profile.industry}</span>
+                            </div>
+                            <div class="field-row">
+                                <span class="field-label">Product</span>
+                                <span class="field-value">${profile.primaryProduct}</span>
+                            </div>
+                            <div class="field-row">
+                                <span class="field-label">Email</span>
+                                <span class="field-value">${profile.email}</span>
+                            </div>
+                            <div class="field-row">
+                                <span class="field-label">Location</span>
+                                <span class="field-value">${profile.location}</span>
+                            </div>
+                        </div>
+                        <div class="profile-card__sf-footer">
+                            <button class="btn btn--sf-primary">View Details</button>
+                        </div>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-11') {
+                // Microsoft Fluent Style
+                return `
+                    <div class="profile-card profile-card--fluent" data-id="${profile.id}">
+                        <div class="profile-card__fluent-header">
+                            <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__fluent-avatar">
+                            <div class="profile-card__fluent-info">
+                                <h3>${profile.name}</h3>
+                                <p class="subtitle">${profile.job_title}</p>
+                                <p class="company">${profile.company}</p>
+                            </div>
+                        </div>
+                        <div class="profile-card__fluent-body">
+                            <div class="fluent-stat">
+                                <span class="fluent-icon">📊</span>
+                                <span class="fluent-label">${profile.industry}</span>
+                            </div>
+                            <div class="fluent-stat">
+                                <span class="fluent-icon">🛠️</span>
+                                <span class="fluent-label">${profile.primaryProduct}</span>
+                            </div>
+                            <div class="fluent-stat">
+                                <span class="fluent-icon">📍</span>
+                                <span class="fluent-label">${profile.location}</span>
+                            </div>
+                        </div>
+                        <div class="profile-card__fluent-actions">
+                            <button class="btn btn--fluent">View Profile</button>
+                        </div>
+                    </div>
+                `;
+            } else if (currentAlignment === 'alignment-12') {
+                // Apple Minimalist Style
+                return `
+                    <div class="profile-card profile-card--apple" data-id="${profile.id}">
+                        <img src="${profile.avatar}" alt="${profile.name}" class="profile-card__apple-avatar">
+                        <h3 class="profile-card__apple-name">${profile.name}</h3>
+                        <p class="profile-card__apple-title">${profile.job_title}</p>
+                        <p class="profile-card__apple-company">${profile.company}</p>
+                        <button class="btn btn--apple">Connect</button>
                     </div>
                 `;
             }
@@ -438,7 +696,9 @@ class CommunityLeaders {
 
     switchAlignment(alignment) {
         // Remove existing alignment classes
-        document.body.classList.remove('alignment-1', 'alignment-2');
+        document.body.classList.remove('alignment-1', 'alignment-2', 'alignment-3', 'alignment-4', 'alignment-5', 
+                                       'alignment-6', 'alignment-7', 'alignment-8', 'alignment-9', 
+                                       'alignment-10', 'alignment-11', 'alignment-12');
         // Add new alignment class
         document.body.classList.add(alignment);
         // Re-render profiles to apply new layout if profiles are loaded

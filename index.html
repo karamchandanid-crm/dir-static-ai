@@ -64,8 +64,18 @@
                     <option value="2022">2022</option>
                 </select>
                 <select id="alignmentToggle" class="filter-select">
-                    <option value="alignment-2">Alignment 2 (Side-by-side)</option>
-                    <option value="alignment-1">Alignment 1 (Centered)</option>
+                    <option value="alignment-1">Compact Card</option>
+                    <option value="alignment-2">Detailed Card</option>
+                    <option value="alignment-3">List View</option>
+                    <option value="alignment-4">Grid Minimal</option>
+                    <option value="alignment-5">Profile Focus</option>
+                    <option value="alignment-6">LinkedIn Professional</option>
+                    <option value="alignment-7">Facebook Social</option>
+                    <option value="alignment-8">X (Twitter) Minimal</option>
+                    <option value="alignment-9">YouTube Creator</option>
+                    <option value="alignment-10">Salesforce Data</option>
+                    <option value="alignment-11">Microsoft Fluent</option>
+                    <option value="alignment-12">Apple Minimalist</option>
                 </select>
             </div>
         </div>
@@ -74,20 +84,112 @@
             <div class="layout-controls__header">
                 <h3 class="layout-controls__title">Layout View Options</h3>
             </div>
-            <div class="layout-controls__options">
-                <div class="layout-option">
-                    <label class="layout-option__label">
-                        <input type="radio" name="stateArrangement" value="side-by-side" class="layout-option__input">
-                        <span class="layout-option__text">Option 1: Side-by-side State Arrangement</span>
-                        <span class="layout-option__description">Display profile states in two columns</span>
-                    </label>
+            <div class="layout-controls__section">
+                <h4 class="layout-controls__subtitle">Card Layout Style</h4>
+                <div class="layout-controls__radio-group">
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-1" class="layout-option__input">
+                            <span class="layout-option__text">Option 1: Compact Card</span>
+                            <span class="layout-option__description">Minimal card view with centered layout</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-2" class="layout-option__input" checked>
+                            <span class="layout-option__text">Option 2: Detailed Card</span>
+                            <span class="layout-option__description">Full details with all stats visible</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-3" class="layout-option__input">
+                            <span class="layout-option__text">Option 3: List View</span>
+                            <span class="layout-option__description">Horizontal list layout for easy scanning</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-4" class="layout-option__input">
+                            <span class="layout-option__text">Option 4: Grid Minimal</span>
+                            <span class="layout-option__description">Minimal grid with profile photos</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-5" class="layout-option__input">
+                            <span class="layout-option__text">Option 5: Profile Focus</span>
+                            <span class="layout-option__description">Card-based layout with cover image</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-6" class="layout-option__input">
+                            <span class="layout-option__text">Option 6: LinkedIn Professional</span>
+                            <span class="layout-option__description">Professional layout with left-aligned photo</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-7" class="layout-option__input">
+                            <span class="layout-option__text">Option 7: Facebook Social</span>
+                            <span class="layout-option__description">Cover photo with social metrics</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-8" class="layout-option__input">
+                            <span class="layout-option__text">Option 8: X (Twitter) Minimal</span>
+                            <span class="layout-option__description">Compact cards with @ handles</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-9" class="layout-option__input">
+                            <span class="layout-option__text">Option 9: YouTube Creator</span>
+                            <span class="layout-option__description">Channel-focused with metrics</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-10" class="layout-option__input">
+                            <span class="layout-option__text">Option 10: Salesforce Data</span>
+                            <span class="layout-option__description">Data-rich with field indicators</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-11" class="layout-option__input">
+                            <span class="layout-option__text">Option 11: Microsoft Fluent</span>
+                            <span class="layout-option__description">Clean cards with subtle depth</span>
+                        </label>
+                    </div>
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="layoutStyle" value="alignment-12" class="layout-option__input">
+                            <span class="layout-option__text">Option 12: Apple Minimalist</span>
+                            <span class="layout-option__description">Ultra-clean with lots of whitespace</span>
+                        </label>
+                    </div>
                 </div>
-                <div class="layout-option">
-                    <label class="layout-option__label">
-                        <input type="radio" name="stateArrangement" value="by-line" class="layout-option__input" checked>
-                        <span class="layout-option__text">Option 2: By-line State Arrangement</span>
-                        <span class="layout-option__description">Display profile states in single column rows</span>
-                    </label>
+            </div>
+            <div class="layout-controls__section add-on-hides">
+                <h4 class="layout-controls__subtitle">Stats Display Arrangement (for Detailed Card)</h4>
+                <div class="layout-controls__radio-group">
+                    <div class="layout-option">
+                        <label class="layout-option__label">
+                            <input type="radio" name="stateArrangement" value="side-by-side" class="layout-option__input" checked>
+                            <span class="layout-option__text">Side-by-side State Arrangement</span>
+                            <span class="layout-option__description">Display profile stats in two columns</span>
+                        </label>
+                    </div>
+                    <div class="layout-option" style="display: none;">
+                        <label class="layout-option__label">
+                            <input type="radio" name="stateArrangement" value="by-line" class="layout-option__input">
+                            <span class="layout-option__text">By-line State Arrangement</span>
+                            <span class="layout-option__description">Display profile stats in single column rows</span>
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
