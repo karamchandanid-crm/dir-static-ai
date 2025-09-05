@@ -19,6 +19,17 @@
                 <input type="text" id="searchInput" class="search-input" placeholder="Search Community Leaders...">
             </div>
             <div class="filters__options">
+                <select id="countryFilter" class="filter-select">
+                    <option value="">All Countries</option>
+                    <option value="USA">USA</option>
+                    <option value="Mexico">Mexico</option>
+                    <option value="India">India</option>
+                    <option value="UK">UK</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Brazil">Brazil</option>
+                    <option value="Ireland">Ireland</option>
+                </select>
                 <select id="regionFilter" class="filter-select add-on-hides">
                     <option value="">All Regions</option>
                     <option value="north-america">North America</option>
@@ -57,7 +68,7 @@
                     <option value="Revit">Revit</option>
                     <option value="Vault">Vault</option>
                 </select>
-                <select id="yearFilter" class="filter-select">
+                <select id="yearFilter" class="filter-select add-on-hides">
                     <option value="">All Years</option>
                     <option value="2024">2024</option>
                     <option value="2023">2023</option>

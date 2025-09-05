@@ -29,6 +29,7 @@ class CommunityLeaders {
                 expertise: "Development",
                 year: "2024",
                 location: "San Francisco, CA",
+                country: "USA",
                 bio: "Passionate about creating innovative solutions that drive business transformation. Specializes in Lightning Web Components and integration patterns.",
                 avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
                 posts: 156,
@@ -53,6 +54,7 @@ class CommunityLeaders {
                 expertise: "Architecture",
                 year: "2023",
                 location: "Mexico City, Mexico",
+                country: "Mexico",
                 bio: "Expert in designing scalable Autodesk platform solutions for enterprise clients. Focus on data architecture and system integration.",
                 avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
                 posts: 89,
@@ -77,6 +79,7 @@ class CommunityLeaders {
                 expertise: "Administration",
                 year: "2024",
                 location: "Mumbai, India",
+                country: "India",
                 bio: "Dedicated to optimizing business processes through intelligent automation and user experience design.",
                 avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face",
                 posts: 234,
@@ -101,6 +104,7 @@ class CommunityLeaders {
                 expertise: "Consulting",
                 year: "2023",
                 location: "London, UK",
+                country: "UK",
                 bio: "Helping organizations maximize their Autodesk platform investment through strategic implementations and change management.",
                 avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
                 posts: 412,
@@ -125,6 +129,7 @@ class CommunityLeaders {
                 expertise: "Development",
                 year: "2024",
                 location: "Singapore",
+                country: "Singapore",
                 bio: "Specializes in custom Autodesk applications and advanced platform development for complex business requirements.",
                 avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face",
                 posts: 178,
@@ -149,6 +154,7 @@ class CommunityLeaders {
                 expertise: "Architecture",
                 year: "2022",
                 location: "Toronto, Canada",
+                country: "Canada",
                 bio: "Leading digital transformation initiatives with focus on API integrations and data migration strategies.",
                 avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face",
                 posts: 267,
@@ -173,6 +179,7 @@ class CommunityLeaders {
                 expertise: "Consulting",
                 year: "2024",
                 location: "São Paulo, Brazil",
+                country: "Brazil",
                 bio: "Bridging the gap between business requirements and technical solutions with expertise in process optimization.",
                 avatar: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=100&h=100&fit=crop&crop=face",
                 posts: 145,
@@ -197,6 +204,7 @@ class CommunityLeaders {
                 expertise: "Administration",
                 year: "2023",
                 location: "Dublin, Ireland",
+                country: "Ireland",
                 bio: "Expert in user management, security configurations, and workflow automation to enhance organizational efficiency.",
                 avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face",
                 posts: 87,
@@ -219,6 +227,7 @@ class CommunityLeaders {
 
     setupEventListeners() {
         const searchInput = document.getElementById('searchInput');
+        const countryFilter = document.getElementById('countryFilter');
         const regionFilter = document.getElementById('regionFilter');
         const expertiseFilter = document.getElementById('expertiseFilter');
         const industryFilter = document.getElementById('industryFilter');
@@ -229,6 +238,7 @@ class CommunityLeaders {
         const stateArrangementInputs = document.querySelectorAll('input[name="stateArrangement"]');
 
         searchInput.addEventListener('input', () => this.applyFilters());
+        countryFilter.addEventListener('change', () => this.applyFilters());
         regionFilter.addEventListener('change', () => this.applyFilters());
         expertiseFilter.addEventListener('change', () => this.applyFilters());
         industryFilter.addEventListener('change', () => this.applyFilters());
@@ -267,6 +277,7 @@ class CommunityLeaders {
 
     applyFilters() {
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const countryFilter = document.getElementById('countryFilter').value;
         const regionFilter = document.getElementById('regionFilter').value;
         const expertiseFilter = document.getElementById('expertiseFilter').value;
         const industryFilter = document.getElementById('industryFilter').value;
@@ -280,13 +291,14 @@ class CommunityLeaders {
                 profile.company.toLowerCase().includes(searchTerm) ||
                 profile.bio.toLowerCase().includes(searchTerm);
 
+            const matchesCountry = !countryFilter || profile.country === countryFilter;
             const matchesRegion = !regionFilter || profile.region === regionFilter;
             const matchesExpertise = !expertiseFilter || profile.expertise === expertiseFilter;
             const matchesIndustry = !industryFilter || profile.industry === industryFilter;
             const matchesProduct = !productFilter || profile.primaryProduct === productFilter;
             const matchesYear = !yearFilter || profile.year === yearFilter;
 
-            return matchesSearch && matchesRegion && matchesExpertise && matchesIndustry && matchesProduct && matchesYear;
+            return matchesSearch && matchesCountry && matchesRegion && matchesExpertise && matchesIndustry && matchesProduct && matchesYear;
         });
 
         this.renderProfiles();
@@ -616,7 +628,7 @@ class CommunityLeaders {
                                 <span class="stat-icon">🌟</span>
                                 <span class="stat-value">${profile.expertise}</span>
                             </div>
-                            <div class="stat-item">
+                            <div class="stat-item add-on-hides">
                                 <span class="stat-icon">📅</span>
                                 <span class="stat-value">${profile.year} </span>
                             </div>

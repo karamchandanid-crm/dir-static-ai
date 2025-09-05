@@ -848,7 +848,7 @@ body.alignment-2 .profile-card__handle {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  padding: 8px 0;
+  padding-top: 8px;
   transition: all 0.3s ease;
 }
 
@@ -1637,7 +1637,7 @@ body.alignment-8 .profile-card__stats {
   display: flex;
   flex-direction: column;
   /* gap: 6px; */
-  margin: 8px 0;
+  margin-top: 8px 0;
   border-top: 1px solid #eff3f4;
     width: 100%;
 }
@@ -1661,7 +1661,6 @@ body.alignment-8 .stat-value {
 }
 
 .profile-card__tw-footer {
-  margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid #eff3f4;
   display: flex;
