@@ -70,29 +70,44 @@ body {
   padding: var(--slds-spacing-large);
 }
 
-/* Header Styles */
-.header {
-  text-align: center;
-  margin-bottom: var(--slds-spacing-x-large);
-  padding: var(--slds-spacing-x-large) 0;
+/* Header styles moved to header.css */
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--slds-spacing-xx-small);
 }
 
-.header__title {
-  font-size: 2.5rem;
-  font-weight: 700;
+.btn--primary {
+  background: #1d9bf0;
+  color: white;
+  border-color: #1d9bf0;
+}
+
+.btn--primary:hover {
+  background: #1a8cd8;
+  border-color: #1a8cd8;
+}
+
+.btn--secondary {
+  background: transparent;
   color: var(--slds-c-text-primary);
-  margin: 0 0 var(--slds-spacing-medium) 0;
+  border-color: var(--slds-c-border-primary);
 }
 
-.header__description {
-  font-size: 1.125rem;
-  color: var(--slds-c-text-secondary);
-  margin: 0;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  border-bottom: 1px solid var(--slds-c-border-primary);
+.btn--secondary:hover {
+  background: var(--slds-c-background-secondary);
+  border-color: var(--slds-c-border-secondary);
 }
+
 
 /* Filter Styles */
 .filters {
@@ -1998,4 +2013,37 @@ body.alignment-12 .profile-grid {
 
 .btn--apple:hover {
   background: #0077ed;
+}
+
+/* Responsive styles for header branding */
+@media (max-width: 768px) {
+
+  .header__brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--slds-spacing-medium);
+  }
+
+  .header__actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .header__stats {
+    gap: var(--slds-spacing-medium);
+  }
+
+  .stat-badge {
+    flex: 1;
+    min-width: 60px;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
 }
